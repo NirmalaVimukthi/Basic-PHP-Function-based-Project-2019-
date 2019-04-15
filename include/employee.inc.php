@@ -91,6 +91,18 @@ protected function getoptions2($table,$op){
 				return $ids;
 			}
 		}
+		protected function getoptionsbr($op){
+
+			$sql = 'SELECT * FROM bank_branch WHERE bank_id='.$op.'';
+			$result = $this->connect() -> query($sql);
+			$numRows =$result -> num_rows;
+			if ($numRows > 0){
+				while ($row =$result->fetch_assoc()){
+					$ids[] = $row;
+				}
+				return $ids;
+			}
+		}
 
 		protected function getoptions3($table){
 

@@ -14,19 +14,19 @@
 
      $emp_email  = $_POST['email'];
 
-      $emp_photo = $_POST['image'];
+     
 
       $emp_address = $_POST['add'];
 
       $bank_id = $_POST['bank'];
-      echo $bank_id;
+
 
      $emp_address= str_replace(",","-",$emp_address);
 
        $emp_password = $_POST['pass'];
 
 $error=null;
-if(isset( $_FILES['image']['name'];)){
+if(isset( $_FILES['image']['name'])){
   
   $fileName = $_FILES['image']['name'];
   $fileTmpName = $_FILES['image']['tmp_name'];
@@ -173,7 +173,7 @@ if(isset( $_FILES['image']['name'];)){
                   <div class="form-group">
                   <label>Bank Partner</label>
                   <select class="form-control" name="branch">
-                    <?php $em -> select_option2("bank_branch","branch_id","branch_name",$bank_id); ?>
+                    <?php $em -> select_optionbranch($bank_id); ?>
                   </select>
                 </div>
 

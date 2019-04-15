@@ -149,6 +149,19 @@ public function select_option($table,$value,$option){
 		}
 	}
 
+public function select_optionform(){
+		$datas = $this-> getbank();
+		$bank_id=null;
+		foreach ($datas as $data) {
+			$bank_id=$data['bank_id'];
+			$bank_name=$data['bank_name'];
+		
+			echo '<option value="'.$bank_id.'">'.$bank_name.'</option>';	
+
+			
+		}
+	}
+
 public function select_option3($table,$value,$option){
 		$datas = $this-> getoptions($table);
 		$bank_id=null;
@@ -173,6 +186,20 @@ public function select_option2($table,$value,$option,$op){
 
 
 			echo '<option value="'.$data[''.$value.''].'"> '.$data[''.$option.''].'</option>';	
+
+
+
+			
+		}
+	}
+
+public function select_optionbranch($op){
+		$datas = $this-> getoptionsbr($op);
+		foreach ($datas as $data) {
+
+
+
+			echo '<option value="'.$data['branch_id'].'"> '.$data['branch_name'].'</option>';	
 
 
 
