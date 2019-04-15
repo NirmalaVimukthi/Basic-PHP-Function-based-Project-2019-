@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
   
-<!-- Mirrored from html-templates.multipurposethemes.com/bootstrap-4/admin/minimo-admin/minimoadmin-bootstrap-3/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 13 Apr 2019 06:53:35 GMT -->
+
 <head>
-    <title>mínimo admin - Dashboard</title>
+    <title>NIRMALA admin - Dashboard</title>
 
      <?php require_once('functions/function.php');
      load_head_component();
