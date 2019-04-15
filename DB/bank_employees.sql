@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2019 at 01:53 PM
+-- Generation Time: Apr 15, 2019 at 03:53 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -87,7 +87,10 @@ INSERT INTO `bank_branch` (`branch_id`, `branch_name`, `branch_address`, `bank_i
 (2, 'Kandy', 'kandy', 1, 0),
 (3, 'Kandy-main', 'Main street, kandy town', 3, 1),
 (4, 'Kandy', 'kandy town', 3, 0),
-(5, 'Kandy', 'yatunuwars steet- Kandy', 4, 1);
+(5, 'Kandy', 'yatunuwars steet- Kandy', 4, 1),
+(6, 'Thalathuoya', 'thalathuoya town', 1, 1),
+(7, 'Peradeniya', 'iriyagama- peradenia.', 5, 1),
+(8, 'pilimathalawa', 'pilimathalawa', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -123,7 +126,8 @@ INSERT INTO `employee` (`emp_id`, `emp_name`, `emp_email`, `emp_photo`, `emp_add
 (24, 'vimukthi', 'nirmalavimukthi@hotmail.com', 'images/ep_5cb2fe3cadc883.72757679.jpg', '123- new town.', '1234', 2, 0),
 (25, 'aluth', 'mt@test.com', 'images/ep_5cb46bd32f0c56.74963200.jpg', 'thalathuoya@kandy.com', '1234', 3, 1),
 (26, 'jayanatha', 'pseranga@hotmail.com', 'images/ep_5cb46bfc385687.24510542.jpg', '123-thal road.', '1234', 5, 1),
-(27, 'sandun', 'nirmalavimukthi@hotmail.com', 'images/ep_5cb46c0943eea4.78358279.jpg', 'new address ', '12344', 2, 1);
+(27, 'sandun', 'nirmalavimukthi@hotmail.com', 'images/ep_5cb46c0943eea4.78358279.jpg', 'new address ', '12344', 2, 1),
+(28, 'eli crift', 'vimukthi@Bandara.com', 'images/ep_5cb48be85a19b1.63556434.jpg', '12- melbon- australia', '1234', 6, 1);
 
 --
 -- Indexes for dumped tables
@@ -173,12 +177,12 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `bank_branch`
 --
 ALTER TABLE `bank_branch`
-  MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- Constraints for dumped tables
 --
