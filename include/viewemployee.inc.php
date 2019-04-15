@@ -2,12 +2,33 @@
 
 class viewemployee extends employee {
 
-public function emp_ids(){
+public function emp_count(){
 		$datas = $this-> getAllemployee();
+		$c=0;
 		foreach ($datas as $data) {
-			$emp_id= $data['emp_id'];
-			echo $emp_id;
+			$c=$c+1;
+			
 		}
+		echo $c;
+	}
+
+	public function bank_count(){
+		$datas = $this-> getallbanks();
+		$c=0;
+		foreach ($datas as $data) {
+			$c=$c+1;
+			
+		}
+		echo $c;
+	}
+	public function branch_count(){
+		$datas = $this-> getallbranches();
+		$c=0;
+		foreach ($datas as $data) {
+			$c=$c+1;
+			
+		}
+		echo $c;
 	}
 
 

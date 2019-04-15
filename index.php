@@ -8,6 +8,7 @@
      <?php require_once('functions/function.php');
      load_head_component();
      connect_db();
+     $em = new viewemployee();
 ?>
   </head>
 
@@ -110,7 +111,7 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>11<sup style="font-size: 20px"></sup></h3>
+              <h3><?php $em -> branch_count(); ?><sup style="font-size: 20px"></sup></h3>
 
               <p>Branches</p>
             </div>
@@ -125,7 +126,7 @@
           <!-- small box -->
           <div class="small-box bg-purple">
             <div class="inner">
-              <h3>10</h3>
+              <h3><?php $em -> emp_count(); ?></h3>
 
               <p>Employees Registrations</p>
             </div>
@@ -140,7 +141,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>6</h3>
+              <h3><?php $em -> bank_count(); ?></h3>
 
               <p>Banks</p>
             </div>

@@ -125,7 +125,7 @@
                    <div class="form-group">
                   <label>Bank Partner</label>
                   <select class="form-control" name="bank">
-                   <?php $em -> select_optionreg("bank","bank_id","bank_name"); ?>
+                   <?php $em -> select_option("bank","bank_id","bank_name"); ?>
                   </select>
                 </div>
 
