@@ -10,6 +10,8 @@ public function emp_ids(){
 		}
 	}
 
+
+
 	public function emp_id(){
 		$datas = $this-> getAllemployee();
 		foreach ($datas as $data) {
@@ -44,13 +46,14 @@ public function emp_detail($edit){
 			$bank_id=null;
 			$bank_name=null;
 
+
 			$branches= $this-> getbranch($emp_branch_id);
 			foreach ($branches as $branch) {
 			
 			$branch_name= $branch['branch_name'];
 			$bank_id= $branch['bank_id'];
 
-				$banks = $this-> getbank($bank_id);
+				$banks = $this-> getallbank($bank_id);
 				foreach ($banks as $bank) {
 			
 					$bank_name= $bank['bank_name'];
@@ -63,18 +66,24 @@ public function emp_detail($edit){
 			
 
 		}
+
+		if (isset($data['emp_photo'])){
+		 	$emp_photo=$emp_photo;
+		}
+		else{
+			$emp_photo="images/thumb.png";
+		}	
+
 		if($edit == $emp_id){
 echo'<tr class="progress progress-xs progress-striped active">
 <form action="update.php?id='.$emp_id.'" method="post" enctype="multipart/form-data">
-<td><input type="file" value="'.$emp_photo.'" name="image"></td>
+<td><input type="file"  id="image" name="image"></td>
 <td>'.$emp_id.'</td>
 <td><input type="text" value="'.$emp_name.'" name="name"></td>
 <td><input type="text" value="'.$emp_email.'" name="email"></td>
 <td><input type="text" value="'.$emp_address.'" name="add"></td>
-<td><select name="bank" ><option value='.$bank_id.'>'.$bank_name.'</option>'; $this -> select_option("bank","bank_id","bank_name"); echo'</select></td>
-<td><select name="branch" ><option value='.$bank_id.'>'.$branch_name.'</option>'; $this -> select_option2("bank_branch","branch_id","branch_name",$bank_id); echo'</select></td>
+<td><select name="branch" ><option value='.$emp_branch_id.'>'.$bank_name.' - '.$branch_name.'</option>'; $this -> select_option("bank_branch","branch_id","branch_name"); echo'</select></td>
 <td><input type="password" value="'.$emp_password.'" name="pass"></td>
-
 <td><input type="submit" class="btn-primary" value="Save"></td>
 <td><a href="employee.php"<span class="label label-warning">cancel</span></a></td>
 </form>
@@ -88,8 +97,7 @@ else{
 <td>'.$emp_name.'</td>
 <td>'.$emp_email.'</td>
 <td>'.$emp_address.'</td>
-<td>'.$bank_name.'</td>
-<td>'.$branch_name.'</td>
+<td>'.$bank_name.' - '.$branch_name.'</td>
 <td><a href="employee.php?edit='.$emp_id.'"<span class="label label-success">Edit</span></a></td>
 <td><a href="view.php?id='.$emp_id.'"<span class="label label-info">View</span></a></td>
 <td><a href="employee.php?del='.$emp_id.'"<span class="label label-danger">Delete</span></a></td>
@@ -101,10 +109,37 @@ else{
 }
 
 public function select_option($table,$value,$option){
-		$datas = $this-> getoptions($table);
+		$datas = $this-> getoptions3("bank_branch");
+		$bank_id=null;
 		foreach ($datas as $data) {
+			$bank_id=$data['bank_id'];
+			$branch_name=$data['branch_name'];
+			$branch_id=$data['branch_id'];
 
-			echo '<option value="'.$data[''.$value.''].'"> '.$data[''.$option.''].'</option>';	
+			$banks = $this-> getoptions2("bank",$bank_id);
+			$bank_name = null;
+			foreach ($banks as $bank) {
+				$bank_name = $bank['bank_name'];	
+			}
+
+			echo '<option value="'.$branch_id.'">'.$bank_name.'-'.$branch_name.'</option>';	
+
+			
+		}
+	}
+
+public function select_option3($table,$value,$option){
+		$datas = $this-> getoptions($table);
+		$bank_id=null;
+		foreach ($datas as $data) {
+			$bank_id=$data['bank_id'];
+			$banks = $this-> getoptionsreg("bank");
+			$bank_name = null;
+			foreach ($banks as $bank) {
+				$bank_name = $bank['bank_name'];	
+			}
+
+			echo '<option value="'.$data[''.$value.''].'">'.$data[''.$option.''].'</option>';	
 
 			
 		}
@@ -114,7 +149,11 @@ public function select_option2($table,$value,$option,$op){
 		$datas = $this-> getoptions2($table,$op);
 		foreach ($datas as $data) {
 
+
+
 			echo '<option value="'.$data[''.$value.''].'"> '.$data[''.$option.''].'</option>';	
+
+
 
 			
 		}
@@ -198,8 +237,134 @@ public function show_profile($emp_id){
 			 $this->update_Employee($key,$name,$id);
 		}
 	
+	public function all_updater($table,$key,$name,$id,$where)
+	{
+     	
+			 $this->updater($table,$key,$name,$id,$where);
+		}
+	
 
+	
+public function bank_detail($edit){
+	$banks = $this-> getallbanks();
+	
+	foreach ($banks as $bank) {
+			
+		$bank_id= $bank['bank_id'];
+		$bank_name= $bank['bank_name'];
+
+		
+		
+		if($edit == $bank_id){
+echo'<tr class="progress progress-xs progress-striped active">
+<form action="bank_update.php?id='.$bank_id.'" method="post" enctype="multipart/form-data">
+<td>'.$bank_id.'</td>
+<td><input type="text" value="'.$bank_name.'" name="name"></td>
+<td><input type="submit" class="btn-primary" value="Save"></td>
+<td><a href="bank.php"<span class="label label-warning">cancel</span></a></td>
+</form>
+</tr>';
+
+}
+else{
+	echo'<tr>
+<td>'.$bank_id.'</td>
+<td>'.$bank_name.'</td>
+<td><a href="bank.php?edit='.$bank_id.'"<span class="label label-success">Edit</span></a></td>
+<td><a href="bank.php?del='.$bank_id.'"<span class="label label-danger">Delete</span></a></td>
+</tr>';
+
+}
+		}
+	
+	}
+
+		public function bank_update($key,$name,$id){
+     	
+			 $this->update_bank($key,$name,$id);
+		}
+
+		public function Insert_bank($bank_name){
+     	
+			 $this->insert_to_bank($bank_name);
+		}
+
+
+public function branch_detail($edit){
+	$branches = $this-> getallbranches();
+	
+	foreach ($branches as $branch) {
+			
+		$branch_id=  $branch['branch_id'];
+		$branch_name=  $branch['branch_name'];
+		$bank_id=  $branch['bank_id'];
+		$branch_address=  $branch['branch_address'];
+		$bank_name =null;
+		$banks = $this-> getallbank($bank_id);
+				foreach ($banks as $bank) {
+			
+					$bank_name= $bank['bank_name'];			
+
+		}
+
+
+		
+		
+		if($edit == $branch_id){
+echo'<tr class="progress progress-xs progress-striped active">
+<form action="branch_update.php?id='.$branch_id.'" method="post" enctype="multipart/form-data">
+
+<td>'.$branch_id.'</td>
+<td>'.$bank_name.'</td>
+<td><input type="text" value="'.$branch_name.'" name="name"></td>
+<td><input type="text" value="'.$branch_address.'" name="add"></td>
+<td><input type="submit" class="btn-primary" value="Save"></td>
+<td><a href="branch.php"<span class="label label-warning">cancel</span></a></td>
+</form>
+</tr>';
+
+}
+else{
+	echo'<tr>
+<td>'.$branch_id.'</td>
+<td>'.$bank_name.'</td>
+<td>'.$branch_name.'</td>
+<td>'.$branch_address.'</td>
+<td><a href="branch.php?edit='.$branch_id.'"<span class="label label-success">Edit</span></a></td>
+<td><a href="branch.php?del='.$branch_id.'"<span class="label label-danger">Delete</span></a></td>
+</tr>';
+
+}
+		}
+	
+	}
+
+
+	public function select_bank_option(){
+
+			$datas = $this-> getbank();
+			foreach ($datas as $data) {
+					echo '<option value="'.$data['bank_id'].'"> '.$data['bank_name'].'</option>';	
+
+
+
+			
+		
+	}
+
+	
+}
+
+	public function Insert_branch($branch_name,$branch_address,$branch_bank){
+
+		$this -> insert_to_branch($branch_name,$branch_address,$branch_bank);
 
 }
 
+public function branch_update($key,$name,$id){
+     	   
+			 $this-> update_branch($key,$name,$id);
+		}
 
+
+}
