@@ -93,7 +93,7 @@ protected function getoptions2($table,$op){
 		}
 		protected function getoptionsbr($op){
 
-			$sql = 'SELECT * FROM bank_branch WHERE bank_id='.$op.'';
+			$sql = "SELECT * FROM bank_branch WHERE bank_id='.$op.' AND status=1";
 			$result = $this->connect() -> query($sql);
 			$numRows =$result -> num_rows;
 			if ($numRows > 0){

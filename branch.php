@@ -175,7 +175,7 @@
             <form class="form-element" method="POST" action="addbranch.php">
               <div class="box-body">
                 <div class="form-group">
-                  <label>Select</label>
+                  <label>Select Bank Prtner</label>
                   <select name="bank" class="form-control">
                     <?php $em -> select_bank_option("bank_branch",""); ?>
                   </select>
