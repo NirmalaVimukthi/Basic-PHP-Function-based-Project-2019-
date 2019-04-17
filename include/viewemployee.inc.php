@@ -103,7 +103,7 @@ echo'<tr class="progress progress-xs progress-striped active">
 <td><input type="text" value="'.$emp_name.'" name="name"></td>
 <td><input type="text" value="'.$emp_email.'" name="email"></td>
 <td><input type="text" value="'.$emp_address.'" name="add"></td>
-<td><select name="branch" ><option value='.$emp_branch_id.'>'.$bank_name.' - '.$branch_name.'</option>'; $this -> select_option("bank_branch","branch_id","branch_name"); echo'</select></td>
+<td><select name="branch" ><option value='.$emp_branch_id.'>'.$bank_name.' - '.$branch_name.'</option>'; $this -> select_option("bank_branch","branch_id","branch_name",$emp_branch_id); echo'</select></td>
 <td><input type="password" value="'.$emp_password.'" name="pass"></td>
 <td><input type="submit" class="btn-primary" value="Save"></td>
 <td><a href="employee.php"<span class="label label-warning">cancel</span></a></td>
@@ -129,8 +129,8 @@ else{
 	}
 }
 
-public function select_option($table,$value,$option){
-		$datas = $this-> getoptions3("bank_branch");
+public function select_option($table,$value,$option,$filter_id){
+		$datas = $this-> getoptionsfilter("bank_branch",$filter_id);
 		$bank_id=null;
 		foreach ($datas as $data) {
 			$bank_id=$data['bank_id'];

@@ -116,6 +116,19 @@ protected function getoptions2($table,$op){
 				return $ids;
 			}
 		}
+		protected function getoptionsfilter($table,$filter_id){
+			
+
+			$sql = 'SELECT * FROM bank_branch WHERE status=1 AND branch_id != '.$filter_id.'';
+			$result = $this->connect() -> query($sql);
+			$numRows =$result -> num_rows;
+			if ($numRows > 0){
+				while ($row =$result->fetch_assoc()){
+					$ids[] = $row;
+				}
+				return $ids;
+			}
+		}
 
 		protected function getoptions4($table,$op){
 
